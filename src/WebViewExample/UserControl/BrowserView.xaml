@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="WebViewExample.UserControl.BrowserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:userControls="clr-namespace:WebView2.UserControls;assembly=WebView2">
+             
+    <Grid>
+        <userControls:WebView2 DataContext="{Binding WebView2ViewModel}" />
+    </Grid>
+</UserControl>

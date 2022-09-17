@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="WebView2.UserControls.DownloadPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uc="clr-namespace:WebView2.UserControls"
+             xmlns:converters="clr-namespace:Util.Converters;assembly=Util"
+             xmlns:viewModels="clr-namespace:WebView2.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:WebView2ViewModel}"
+             Visibility="{Binding Path=Count, Converter={converters:EmptyToVisibilityConverter}}">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/WebView2;component/Styles/DownloadPanelStyle.xaml" />
+    </UserControl.Resources>
+    <Border Style="{StaticResource Download.Panel.Border}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" x:Name="DownloadItemList">
+                <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Stretch">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <DockPanel HorizontalAlignment="Left" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="viewModels:DownloadItemViewModel">
+                            <!-- configure download item template -->
+                            <uc:DownloadItem DataContext="{Binding}" DockPanel.Dock="Left" Width="{Binding Width}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!-- close download panel button -->
+            <Border Grid.Column="1" Style="{StaticResource Download.Panel.Close.Border}" MouseDown="OnCloseDownloads">
+                <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Line X1="10" Y1="10" X2="20" Y2="20" Style="{StaticResource Download.Panel.Close.Cross}" />
+                    <Line X1="10" Y1="20" X2="20" Y2="10" Style="{StaticResource Download.Panel.Close.Cross}" />
+                </Canvas>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

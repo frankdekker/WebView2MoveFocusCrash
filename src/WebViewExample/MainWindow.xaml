@@ -1,0 +1,33 @@
+﻿<Window x:Class="WebViewExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ct="clr-namespace:ChromeTabs;assembly=ChromeTabs"
+        xmlns:vm="clr-namespace:WebViewExample.ViewModels"
+        xmlns:uc="clr-namespace:WebViewExample.UserControl"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Width="1200"
+        Height="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:BrowserTab}">
+            <uc:BrowserView />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <ct:ChromeTabControl ItemsSource="{Binding ItemCollection}"
+                             SelectedItem="{Binding SelectedTab}"
+                             CloseTabCommand="{Binding CloseTabCommand}"
+                             TabPersistBehavior="All"
+                             CanMoveTabs="False"
+                             IsAddButtonVisible="False">
+            <ct:ChromeTabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding TabName}" VerticalAlignment="Center" />
+                </DataTemplate>
+            </ct:ChromeTabControl.ItemTemplate>
+        </ct:ChromeTabControl>
+    </Grid>
+</Window>
