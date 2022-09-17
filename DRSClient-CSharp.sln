@@ -5,8 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution", "solution", "{4A0CCA2F-3D4D-4647-A65D-7F9190888783}"
 	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		..\.gitlab-ci.yml = ..\.gitlab-ci.yml
+		.editorconfig = .editorconfig		
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
